@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Apply a Cumulus skin preset: sets the paired wallpaper + colour scheme.
 #
-#   ./apply.sh jade-aviator      # by flavour name
+#   ./apply.sh fleeting-moments      # by flavour name
 #   ./apply.sh 7                 # by preset number (1..24)
 #   ./apply.sh                   # list presets
 #
@@ -13,30 +13,30 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # preset  flavour         wallpaper
 PRESETS=(
-  "1 rose-arcade      nw1"
-  "2 midnight-shore   nw2"
-  "3 crimson-study    nw3"
-  "4 violet-dusk      nw4"
-  "5 lilac-daydream   nw5"
-  "6 lamplight-cat    nw6"
-  "7 jade-aviator     nw7"
-  "8 blue-voyage      nw8"
-  "9 golden-transit   nw9"
-  "10 windswept       nw10"
-  "11 silver-sky      nw11"
-  "12 harbor-dusk     nw12"
-  "13 ember-night     nw13"
+  "1 sunset-pitstop      nw1"
+  "2 seaside-respite   nw2"
+  "3 solace    nw3"
+  "4 elation      nw4"
+  "5 pastel-dreams   nw5"
+  "6 research-study    nw6"
+  "7 fleeting-moments     nw7"
+  "8 expeditions      nw8"
+  "9 yearning   nw9"
+  "10 journey       nw10"
+  "11 reflection      nw11"
+  "12 dusk-harbor     nw12"
+  "13 aspirations     nw13"
   "14 vinyl-halo      nw14"
-  "15 dusty-rose      nw15"
-  "16 indigo-camp     nw16"
-  "17 midnight-street nw17"
-  "18 neon-transit    nw18"
-  "19 lilypad         nw19"
-  "20 twilight-garden nw20"
-  "21 cloudbank       nw21"
+  "15 seaside-stroll      nw15"
+  "16 obscuram     nw16"
+  "17 lingering-moments nw17"
+  "18 island-three    nw18"
+  "19 wondering-beyond         nw19"
+  "20 flaura nw20"
+  "21 solitude       nw21"
   "22 olive-marina    nw22"
-  "23 jungle-sign     nw23"
-  "24 flower-box      nw24"
+  "23 post-anthropocene     nw23"
+  "24 ponder      nw24"
 )
 
 WALL_SRC_DIR="${WALL_SRC_DIR:-$HOME/.local/share/cumulus/walls}"

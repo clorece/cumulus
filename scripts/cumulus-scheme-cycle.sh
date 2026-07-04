@@ -23,21 +23,21 @@ RUNTIME="${XDG_RUNTIME_DIR:-/tmp}"
 
 # preset order  (index = wallpaper number - 1)
 FLAVOURS=(
-  rose-arcade midnight-shore crimson-study violet-dusk lilac-daydream
-  lamplight-cat jade-aviator blue-voyage golden-transit windswept
-  silver-sky harbor-dusk ember-night vinyl-halo dusty-rose
-  indigo-camp midnight-street neon-transit lilypad twilight-garden
-  cloudbank olive-marina jungle-sign flower-box
+  sunset-pitstop seaside-respite solace elation pastel-dreams
+  research-study fleeting-moments expeditions yearning journey
+  reflection dusk-harbor aspirations vinyl-halo seaside-stroll
+  obscuram lingering-moments island-three wondering-beyond flaura
+  solitude olive-marina post-anthropocene ponder
 )
 declare -A WALL=(
-  [rose-arcade]=nw1     [midnight-shore]=nw2  [crimson-study]=nw3
-  [violet-dusk]=nw4     [lilac-daydream]=nw5  [lamplight-cat]=nw6
-  [jade-aviator]=nw7    [blue-voyage]=nw8     [golden-transit]=nw9
-  [windswept]=nw10      [silver-sky]=nw11     [harbor-dusk]=nw12
-  [ember-night]=nw13    [vinyl-halo]=nw14     [dusty-rose]=nw15
-  [indigo-camp]=nw16    [midnight-street]=nw17 [neon-transit]=nw18
-  [lilypad]=nw19        [twilight-garden]=nw20 [cloudbank]=nw21
-  [olive-marina]=nw22   [jungle-sign]=nw23    [flower-box]=nw24
+  [sunset-pitstop]=nw1     [seaside-respite]=nw2  [solace]=nw3
+  [elation]=nw4     [pastel-dreams]=nw5  [research-study]=nw6
+  [fleeting-moments]=nw7    [expeditions]=nw8     [yearning]=nw9
+  [journey]=nw10      [reflection]=nw11     [dusk-harbor]=nw12
+  [aspirations]=nw13    [vinyl-halo]=nw14     [seaside-stroll]=nw15
+  [obscuram]=nw16    [lingering-moments]=nw17 [island-three]=nw18
+  [wondering-beyond]=nw19        [flaura]=nw20 [solitude]=nw21
+  [olive-marina]=nw22   [post-anthropocene]=nw23    [ponder]=nw24
 )
 
 n=${#FLAVOURS[@]}

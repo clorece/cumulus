@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install the 24 Cumulus schemes into Caelestia so they're first-class selectable:
-#   caelestia scheme set -n cumulus -f jade-aviator -m dark
+#   caelestia scheme set -n cumulus -f fleeting-moments -m dark
 # and (optionally) copy the paired wallpapers into your Caelestia wallpaper dir.
 #
 # The scheme data dir lives under the caelestia-cli package (root-owned), so this
@@ -38,4 +38,4 @@ if [[ -d "$walls_src" ]]; then
     cp -v "$walls_src"/nw{1..24}.jpg "$walls_dst/" 2>/dev/null || true
   fi
 fi
-echo ":: done. Apply with:  ./apply.sh jade-aviator"
+echo ":: done. Apply with:  ./apply.sh fleeting-moments"

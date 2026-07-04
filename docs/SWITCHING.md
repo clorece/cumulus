@@ -9,7 +9,7 @@ the override — nothing about your Caelestia install is modified.
 
 ```sh
 scripts/cumulus on        # enable Cumulus (snapshots your current scheme+wallpaper first time)
-scripts/cumulus on jade-aviator   # enable and jump to a specific preset
+scripts/cumulus on fleeting-moments   # enable and jump to a specific preset
 scripts/cumulus off       # back to stock Caelestia, restoring your previous scheme+wallpaper
 scripts/cumulus status    # what's active right now
 ```
@@ -32,7 +32,7 @@ qs -c caelestia kill; caelestia shell -d
 
 # turn ON again
 mv ~/.config/quickshell/caelestia.cumulus-disabled ~/.config/quickshell/caelestia
-./schemes/apply.sh rose-arcade
+./schemes/apply.sh sunset-pitstop
 qs -c caelestia kill; caelestia shell -d
 ```
 

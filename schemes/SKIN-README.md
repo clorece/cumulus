@@ -43,11 +43,11 @@ cd theme/skin
 
 # Quick, no root — re-themes the shell live (writes state scheme.json + sets wallpaper).
 # Wallpapers are read from ~/.local/share/cumulus/walls/nw1..nw24.jpg by default (WALL_SRC_DIR to override).
-./apply.sh jade-aviator        # or a number 1..24
+./apply.sh fleeting-moments        # or a number 1..24
 
 # System-wide (themes terminal/GTK/discord/etc. too) — needs sudo once:
 ./install-schemes.sh
-caelestia scheme set -n cumulus -f jade-aviator -m dark
+caelestia scheme set -n cumulus -f fleeting-moments -m dark
 ```
 
 The shell QML changes are in `shell/…`. Per the package README, drop them into the

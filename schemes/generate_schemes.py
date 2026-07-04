@@ -28,30 +28,30 @@ TEMPLATE = os.path.join(HERE, "..", "active-scheme.json")
 
 PRESETS = [
     # flavour           wall    mode     bg        accent    accent2
-    ("rose-arcade",     "nw1",  "dark",  "1d1727", "eca89d", "96a8d9"),  # dusk-pink glow / periwinkle shadow
-    ("midnight-shore",  "nw2",  "dark",  "102028", "66b8dc", "dcb08a"),  # moonlit sea / warm skin+sand
-    ("crimson-study",   "nw3",  "dark",  "251511", "e0725a", "e3bd92"),  # warm red floor / cream paper
-    ("violet-dusk",     "nw4",  "dark",  "1a1426", "e29468", "ab8fe0"),  # butterfly orange vs violet dusk
-    ("lilac-daydream",  "nw5",  "light", "e6ddf0", "c26b96", "7d88c4"),  # pastel lavender, pink prominent
-    ("lamplight-cat",   "nw6",  "dark",  "1b1b12", "e8cda6", "8fb897"),  # lamp glow / plant green
-    ("jade-aviator",    "nw7",  "dark",  "13221e", "6cc9b4", "dca26e"),  # aqua canopy / amber jacket
-    ("blue-voyage",     "nw8",  "dark",  "151c30", "8fb3e6", "e0e2b2"),  # sail blue / pale chartreuse
-    ("golden-transit",  "nw9",  "dark",  "1c1424", "eccc8a", "bd98b9"),  # luminous gold vs plum cabin
-    ("windswept",       "nw10", "dark",  "132019", "85c9b7", "b8cfd8"),  # storm teal / pale sky
-    ("silver-sky",      "nw11", "light", "dfe3e8", "5580a8", "b3766a"),  # silver overcast / steel + clay
-    ("harbor-dusk",     "nw12", "dark",  "182523", "e2ad7a", "72bcc2"),  # dock lights vs teal water
-    ("ember-night",     "nw13", "dark",  "0e181c", "e28749", "60a8bd"),  # ember vs deep night teal
+    ("sunset-pitstop",     "nw1",  "dark",  "1d1727", "eca89d", "96a8d9"),  # dusk-pink glow / periwinkle shadow
+    ("seaside-respite",  "nw2",  "dark",  "102028", "66b8dc", "dcb08a"),  # moonlit sea / warm skin+sand
+    ("solace",   "nw3",  "dark",  "251511", "e0725a", "e3bd92"),  # warm red floor / cream paper
+    ("elation",     "nw4",  "dark",  "1a1426", "e29468", "ab8fe0"),  # butterfly orange vs violet dusk
+    ("pastel-dreams",  "nw5",  "light", "e6ddf0", "c26b96", "7d88c4"),  # pastel lavender, pink prominent
+    ("research-study",   "nw6",  "dark",  "1b1b12", "e8cda6", "8fb897"),  # lamp glow / plant green
+    ("fleeting-moments",    "nw7",  "dark",  "13221e", "6cc9b4", "dca26e"),  # aqua canopy / amber jacket
+    ("expeditions",     "nw8",  "dark",  "151c30", "8fb3e6", "e0e2b2"),  # sail blue / pale chartreuse
+    ("yearning",  "nw9",  "dark",  "1c1424", "eccc8a", "bd98b9"),  # luminous gold vs plum cabin
+    ("journey",       "nw10", "dark",  "132019", "85c9b7", "b8cfd8"),  # storm teal / pale sky
+    ("reflection",      "nw11", "light", "dfe3e8", "5580a8", "b3766a"),  # silver overcast / steel + clay
+    ("dusk-harbor",     "nw12", "dark",  "182523", "e2ad7a", "72bcc2"),  # dock lights vs teal water
+    ("aspirations",     "nw13", "dark",  "0e181c", "e28749", "60a8bd"),  # ember vs deep night teal
     ("vinyl-halo",      "nw14", "light", "dad4c9", "a8853f", "5c7a9e"),  # greige plaza, gold halo / shark blue
-    ("dusty-rose",      "nw15", "light", "e5d6d0", "b06b60", "caa38f"),  # rosy daylight, analogous clays
-    ("indigo-camp",     "nw16", "dark",  "15172b", "9aa6e3", "e2a76a"),  # indigo night / campfire
-    ("midnight-street", "nw17", "dark",  "0f1c29", "82b6dc", "c1bcdf"),  # lamp blue / pale lavender
-    ("neon-transit",    "nw18", "dark",  "13242c", "66cca8", "dcd285"),  # neon green / signage yellow
-    ("lilypad",         "nw19", "light", "dcebd6", "4e8f57", "b0806f"),  # fresh leaf light / warm blush
-    ("twilight-garden", "nw20", "dark",  "0d201f", "4fd1b8", "e2a97e"),  # verdigris / sunset peach
-    ("cloudbank",       "nw21", "light", "def0ec", "3d8f86", "9a9556"),  # pale aqua sky / olive-gold cloud
+    ("seaside-stroll",      "nw15", "light", "e5d6d0", "b06b60", "caa38f"),  # rosy daylight, analogous clays
+    ("obscuram",     "nw16", "dark",  "15172b", "9aa6e3", "e2a76a"),  # indigo night / campfire
+    ("lingering-moments", "nw17", "dark",  "0f1c29", "82b6dc", "c1bcdf"),  # lamp blue / pale lavender
+    ("island-three",    "nw18", "dark",  "13242c", "66cca8", "dcd285"),  # neon green / signage yellow
+    ("wondering-beyond",         "nw19", "light", "dcebd6", "4e8f57", "b0806f"),  # fresh leaf light / warm blush
+    ("flaura", "nw20", "dark",  "0d201f", "4fd1b8", "e2a97e"),  # verdigris / sunset peach
+    ("solitude",       "nw21", "light", "def0ec", "3d8f86", "9a9556"),  # pale aqua sky / olive-gold cloud
     ("olive-marina",    "nw22", "light", "e8e0c4", "8f7d35", "5c7186"),  # butter cream / slate water
-    ("jungle-sign",     "nw23", "dark",  "182212", "e2c964", "97b56e"),  # sign yellow / moss
-    ("flower-box",      "nw24", "light", "e3dac9", "b04a44", "6f8a5c"),  # sand light, scarf red / leaf green
+    ("post-anthropocene",     "nw23", "dark",  "182212", "e2c964", "97b56e"),  # sign yellow / moss
+    ("ponder",      "nw24", "light", "e3dac9", "b04a44", "6f8a5c"),  # sand light, scarf red / leaf green
 ]
 
 # ---------- colour math ----------

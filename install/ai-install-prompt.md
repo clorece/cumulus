@@ -33,7 +33,7 @@ in the cloned repo. Do this carefully and reversibly:
    my existing ~/.config/caelestia/shell.json using `jq -s '.[0] * .[1]'`. Preserve all my
    existing settings. If ~/.config/caelestia/shell.json doesn't exist, copy it.
 
-6. SCHEMES. Default to ROOTLESS: apply a preset by running `./schemes/apply.sh rose-arcade`
+6. SCHEMES. Default to ROOTLESS: apply a preset by running `./schemes/apply.sh sunset-pitstop`
    (writes the shell scheme state, no sudo). Only if I explicitly ask for full cross-app
    theming, run `./schemes/install-schemes.sh` (uses sudo).
 

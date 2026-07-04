@@ -9,68 +9,68 @@ Wallpapers by [@XilmO@夕末 on pixiv](https://www.pixiv.net/en/users/19389056) 
 
 ---
 
-### 1 · Rose Arcade &nbsp;·&nbsp; `dark`
-![Rose Arcade](gallery/01-rose-arcade.png)
+### 1 · Sunset Pitstop &nbsp;·&nbsp; `dark`
+![Sunset Pitstop](gallery/01-sunset-pitstop.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Rose Arcade — dashboard](gallery/01-rose-arcade-dashboard.png)
+![Sunset Pitstop — dashboard](gallery/01-sunset-pitstop-dashboard.png)
 </details>
 
-### 2 · Midnight Shore &nbsp;·&nbsp; `dark`
-![Midnight Shore](gallery/02-midnight-shore.png)
+### 2 · Seaside Respite &nbsp;·&nbsp; `dark`
+![Seaside Respite](gallery/02-seaside-respite.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Midnight Shore — dashboard](gallery/02-midnight-shore-dashboard.png)
+![Seaside Respite — dashboard](gallery/02-seaside-respite-dashboard.png)
 </details>
 
-### 3 · Crimson Study &nbsp;·&nbsp; `dark`
-![Crimson Study](gallery/03-crimson-study.png)
+### 3 · Solace &nbsp;·&nbsp; `dark`
+![Solace](gallery/03-solace.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Crimson Study — dashboard](gallery/03-crimson-study-dashboard.png)
+![Solace — dashboard](gallery/03-solace-dashboard.png)
 </details>
 
-### 4 · Violet Dusk &nbsp;·&nbsp; `dark`
-![Violet Dusk](gallery/04-violet-dusk.png)
+### 4 · Elation &nbsp;·&nbsp; `dark`
+![Elation](gallery/04-elation.png)
 
-### 5 · Lilac Daydream &nbsp;·&nbsp; `light`
-![Lilac Daydream](gallery/05-lilac-daydream.png)
+### 5 · Pastel Dreams &nbsp;·&nbsp; `light`
+![Pastel Dreams](gallery/05-pastel-dreams.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Lilac Daydream — dashboard](gallery/05-lilac-daydream-dashboard.png)
+![Pastel Dreams — dashboard](gallery/05-pastel-dreams-dashboard.png)
 </details>
 
-### 6 · Lamplight Cat &nbsp;·&nbsp; `dark`
-![Lamplight Cat](gallery/06-lamplight-cat.png)
+### 6 · Research Study &nbsp;·&nbsp; `dark`
+![Research Study](gallery/06-research-study.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Lamplight Cat — dashboard](gallery/06-lamplight-cat-dashboard.png)
+![Research Study — dashboard](gallery/06-research-study-dashboard.png)
 </details>
 
-### 7 · Jade Aviator &nbsp;·&nbsp; `dark`
-![Jade Aviator](gallery/07-jade-aviator.png)
+### 7 · Fleeting Moments &nbsp;·&nbsp; `dark`
+![Fleeting Moments](gallery/07-fleeting-moments.png)
 <details><summary>↓ dashboard + notifications</summary>
 
-![Jade Aviator — dashboard](gallery/07-jade-aviator-dashboard.png)
+![Fleeting Moments — dashboard](gallery/07-fleeting-moments-dashboard.png)
 </details>
 
-### 8 · Blue Voyage &nbsp;·&nbsp; `dark`
-![Blue Voyage](gallery/08-blue-voyage.png)
+### 8 · Expeditions &nbsp;·&nbsp; `dark`
+![Expeditions](gallery/08-expeditions.png)
 
-### 9 · Golden Transit &nbsp;·&nbsp; `dark`
-![Golden Transit](gallery/09-golden-transit.png)
+### 9 · Yearning &nbsp;·&nbsp; `dark`
+![Yearning](gallery/09-yearning.png)
 
-### 10 · Windswept &nbsp;·&nbsp; `dark`
-![Windswept](gallery/10-windswept.png)
+### 10 · Journey &nbsp;·&nbsp; `dark`
+![Journey](gallery/10-journey.png)
 
-### 11 · Silver Sky &nbsp;·&nbsp; `light`
-![Silver Sky](gallery/11-silver-sky.png)
+### 11 · Reflection &nbsp;·&nbsp; `light`
+![Reflection](gallery/11-reflection.png)
 
-### 12 · Harbor Dusk &nbsp;·&nbsp; `dark`
-![Harbor Dusk](gallery/12-harbor-dusk.png)
+### 12 · Dusk Harbor &nbsp;·&nbsp; `dark`
+![Dusk Harbor](gallery/12-dusk-harbor.png)
 
-### 13 · Ember Night &nbsp;·&nbsp; `dark`
-![Ember Night](gallery/13-ember-night.png)
+### 13 · Aspirations &nbsp;·&nbsp; `dark`
+![Aspirations](gallery/13-aspirations.png)
 
 ### 14 · Vinyl Halo &nbsp;·&nbsp; `light`
 ![Vinyl Halo](gallery/14-vinyl-halo.png)
@@ -79,32 +79,32 @@ Wallpapers by [@XilmO@夕末 on pixiv](https://www.pixiv.net/en/users/19389056) 
 ![Vinyl Halo — dashboard](gallery/14-vinyl-halo-dashboard.png)
 </details>
 
-### 15 · Dusty Rose &nbsp;·&nbsp; `light`
-![Dusty Rose](gallery/15-dusty-rose.png)
+### 15 · Seaside Stroll &nbsp;·&nbsp; `light`
+![Seaside Stroll](gallery/15-seaside-stroll.png)
 
-### 16 · Indigo Camp &nbsp;·&nbsp; `dark`
-![Indigo Camp](gallery/16-indigo-camp.png)
+### 16 · Obscuram &nbsp;·&nbsp; `dark`
+![Obscuram](gallery/16-obscuram.png)
 
-### 17 · Midnight Street &nbsp;·&nbsp; `dark`
-![Midnight Street](gallery/17-midnight-street.png)
+### 17 · Lingering Moments &nbsp;·&nbsp; `dark`
+![Lingering Moments](gallery/17-lingering-moments.png)
 
-### 18 · Neon Transit &nbsp;·&nbsp; `dark`
-![Neon Transit](gallery/18-neon-transit.png)
+### 18 · Island Three &nbsp;·&nbsp; `dark`
+![Island Three](gallery/18-island-three.png)
 
-### 19 · Lilypad &nbsp;·&nbsp; `light`
-![Lilypad](gallery/19-lilypad.png)
+### 19 · Wondering Beyond &nbsp;·&nbsp; `light`
+![Wondering Beyond](gallery/19-wondering-beyond.png)
 
-### 20 · Twilight Garden &nbsp;·&nbsp; `dark`
-![Twilight Garden](gallery/20-twilight-garden.png)
+### 20 · Flaura &nbsp;·&nbsp; `dark`
+![Flaura](gallery/20-flaura.png)
 
-### 21 · Cloudbank &nbsp;·&nbsp; `light`
-![Cloudbank](gallery/21-cloudbank.png)
+### 21 · Solitude &nbsp;·&nbsp; `light`
+![Solitude](gallery/21-solitude.png)
 
 ### 22 · Olive Marina &nbsp;·&nbsp; `light`
 ![Olive Marina](gallery/22-olive-marina.png)
 
-### 23 · Jungle Sign &nbsp;·&nbsp; `dark`
-![Jungle Sign](gallery/23-jungle-sign.png)
+### 23 · Post-Anthropocene &nbsp;·&nbsp; `dark`
+![Post-Anthropocene](gallery/23-post-anthropocene.png)
 
-### 24 · Flower Box &nbsp;·&nbsp; `light`
-![Flower Box](gallery/24-flower-box.png)
+### 24 · Ponder &nbsp;·&nbsp; `light`
+![Ponder](gallery/24-ponder.png)

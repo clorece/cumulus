@@ -74,8 +74,8 @@ else
 fi
 
 # --- 5. apply a default preset + reload ----------------------------------
-"$REPO/scripts/cumulus-scheme-cycle.sh" rose-arcade >/dev/null 2>&1 || \
-  cp "$REPO/schemes/state/rose-arcade.json" "${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json"
+"$REPO/scripts/cumulus-scheme-cycle.sh" sunset-pitstop >/dev/null 2>&1 || \
+  cp "$REPO/schemes/state/sunset-pitstop.json" "${XDG_STATE_HOME:-$HOME/.local/state}/caelestia/scheme.json"
 qs -c caelestia kill >/dev/null 2>&1; ( caelestia shell -d >/dev/null 2>&1 & )
 say "done. Toggle with:  $REPO/scripts/cumulus {on|off|status}"
 say "cycle presets by binding cumulus-scheme-cycle.sh next/prev to keys (see README)."

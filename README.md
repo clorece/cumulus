@@ -21,20 +21,20 @@ frame — and ships **24 wallpaper-paired colour schemes** you can cycle through
 - **24 presets** — each pairs a wallpaper with a hand-tuned palette. 16 are dark, 8 are true
   light schemes (the mode flows through to GTK/Qt/terminals automatically).
 
-![Rose Arcade — dashboard & notifications](docs/gallery/01-rose-arcade-dashboard.png)
+![Sunset Pitstop — dashboard & notifications](docs/gallery/01-sunset-pitstop-dashboard.png)
 
 <p align="center">
-  <img src="docs/gallery/07-jade-aviator.png" width="49%" alt="Jade Aviator (dark)">
-  <img src="docs/gallery/21-cloudbank.png" width="49%" alt="Cloudbank (light)">
+  <img src="docs/gallery/07-fleeting-moments.png" width="49%" alt="Fleeting Moments (dark)">
+  <img src="docs/gallery/21-solitude.png" width="49%" alt="Solitude (light)">
 </p>
 
 **→ See all 24 presets in the [gallery](docs/GALLERY.md).**
 
-**Preset flavours:** rose-arcade · midnight-shore · crimson-study · violet-dusk ·
-lilac-daydream · lamplight-cat · jade-aviator · blue-voyage · golden-transit · windswept ·
-silver-sky · harbor-dusk · ember-night · vinyl-halo · dusty-rose · indigo-camp ·
-midnight-street · neon-transit · lilypad · twilight-garden · cloudbank · olive-marina ·
-jungle-sign · flower-box
+**Preset flavours:** sunset-pitstop · seaside-respite · solace · elation ·
+pastel-dreams · research-study · fleeting-moments · expeditions · yearning · journey ·
+reflection · dusk-harbor · aspirations · vinyl-halo · seaside-stroll · obscuram ·
+lingering-moments · island-three · wondering-beyond · flaura · solitude · olive-marina ·
+post-anthropocene · ponder
 
 ---
 

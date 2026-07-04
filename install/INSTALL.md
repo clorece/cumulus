@@ -56,9 +56,9 @@ jq -s '.[0] * .[1]' ~/.config/caelestia/shell.json config/shell.json > /tmp/m.js
 #    background.wallpaperEnabled=true, bar.clock/tray.background=true)
 
 # 4. Apply a preset (rootless — shell + wallpaper only)
-./schemes/apply.sh rose-arcade
+./schemes/apply.sh sunset-pitstop
 #   or, for full cross-app theming (sudo, registers schemes with the CLI):
-./schemes/install-schemes.sh && ./schemes/apply.sh rose-arcade
+./schemes/install-schemes.sh && ./schemes/apply.sh sunset-pitstop
 
 # 5. Reload
 qs -c caelestia kill; caelestia shell -d
