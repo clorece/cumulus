@@ -165,8 +165,9 @@ Only genuinely machine-/account-specific things were removed. Nothing visual was
 - [x] `.gitattributes` (LFS for images), `LICENSE` (GPLv3), `CREDITS.md`
 - [x] Supported Caelestia version pinned (`docs/COMPATIBILITY.md`)
 - [x] Install script (merge-not-overwrite, compat check, rootless-first) + `INSTALL.md` + AI prompt
-- [ ] `git init` + `git lfs install` + first commit (`.gitattributes` before assets)
-- [ ] Gallery screenshots (all 24 presets, mark light/dark)
+- [x] `git init` + `git lfs install` + first commit (`.gitattributes` before assets)
+- [x] Gallery screenshots — all 24 presets (bar shots) + 7 dashboard shots, identified against
+  the wallpapers, deduped (2 accidental exact dupes dropped), in `docs/GALLERY.md`
 - [ ] Clean-install test (VM / container)
 - [ ] Publish
 

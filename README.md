@@ -21,7 +21,14 @@ frame — and ships **24 wallpaper-paired colour schemes** you can cycle through
 - **24 presets** — each pairs a wallpaper with a hand-tuned palette. 16 are dark, 8 are true
   light schemes (the mode flows through to GTK/Qt/terminals automatically).
 
-<!-- TODO: add a gallery — screenshots of all 24 presets go here -->
+![Rose Arcade — dashboard & notifications](docs/gallery/01-rose-arcade-dashboard.png)
+
+<p align="center">
+  <img src="docs/gallery/07-jade-aviator.png" width="49%" alt="Jade Aviator (dark)">
+  <img src="docs/gallery/21-cloudbank.png" width="49%" alt="Cloudbank (light)">
+</p>
+
+**→ See all 24 presets in the [gallery](docs/GALLERY.md).**
 
 **Preset flavours:** rose-arcade · midnight-shore · crimson-study · violet-dusk ·
 lilac-daydream · lamplight-cat · jade-aviator · blue-voyage · golden-transit · windswept ·
