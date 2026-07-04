@@ -1,0 +1,13 @@
+# Wallpapers are large binaries — track via Git LFS.
+# NOTE: install `git lfs` before cloning, or the images arrive as pointer files.
+wallpapers/*.jpg   filter=lfs diff=lfs merge=lfs -text
+wallpapers/*.jpeg  filter=lfs diff=lfs merge=lfs -text
+wallpapers/*.png   filter=lfs diff=lfs merge=lfs -text
+
+# Keep shell/QML/scripts as normal text with LF endings.
+*.qml   text eol=lf
+*.sh    text eol=lf
+*.lua   text eol=lf
+*.py    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
