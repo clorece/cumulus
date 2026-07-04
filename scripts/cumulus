@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# cumulus — toggle the Cumulus skin on/off against stock Caelestia.
+#
+#   cumulus on  [flavour]   enable Cumulus (optionally jump to a preset)
+#   cumulus off             restore your previous Caelestia scheme + wallpaper
+#   cumulus status          show current state
+#
+# HOW IT WORKS
+#   Cumulus lives in Caelestia's user override path
+#   (~/.config/quickshell/caelestia), which shadows the system shell copy.
+#   `off` moves that override aside so the stock system shell shows through, and
+#   restores the scheme/wallpaper snapshot taken the first time you ran `on`.
+#   `on` moves it back and applies a Cumulus preset. Nothing is destroyed.
+set -uo pipefail
+
+OVERRIDE="${XDG_CONFIG_HOME:-$HOME/.config}/quickshell/caelestia"
+DISABLED="$OVERRIDE.cumulus-disabled"
+STATE="${XDG_STATE_HOME:-$HOME/.local/state}/caelestia"
+BACKUP="${XDG_STATE_HOME:-$HOME/.local/state}/cumulus/backup"
+SCHEME_FILE="$STATE/scheme.json"
+WALL_PATH="$STATE/wallpaper/path.txt"
+CYCLE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/cumulus-scheme-cycle.sh"
+
+reload() { qs -c caelestia kill >/dev/null 2>&1; ( caelestia shell -d >/dev/null 2>&1 & ) ; }
+
+snapshot_prev() {
+    # Only snapshot once, the first time Cumulus is enabled, so `off` can
+    # restore the *original* stock scheme rather than a Cumulus one.
+    mkdir -p "$BACKUP"
+    [ -f "$BACKUP/scheme.json" ] && return 0
+    [ -f "$SCHEME_FILE" ] && cp "$SCHEME_FILE" "$BACKUP/scheme.json"
+    [ -f "$WALL_PATH" ]   && cp "$WALL_PATH"   "$BACKUP/wallpaper-path.txt"
+    echo ":: snapshotted your previous scheme/wallpaper -> $BACKUP"
+}
+
+case "${1:-status}" in
+  on)
+    snapshot_prev
+    # bring the override back if it was disabled
+    if [ -d "$DISABLED" ] && [ ! -d "$OVERRIDE" ]; then
+      mv "$DISABLED" "$OVERRIDE"
+      echo ":: re-enabled Cumulus override"
+    fi
+    if [ ! -d "$OVERRIDE" ]; then
+      echo "!! no Cumulus override at $OVERRIDE — run the installer first" >&2
+      exit 1
+    fi
+    flavour="${2:-}"
+    if [ -x "$CYCLE" ]; then
+      "$CYCLE" "${flavour:-next}"    # jump to preset, or advance one
+    fi
+    reload
+    echo ":: Cumulus ON"
+    ;;
+  off)
+    if [ -d "$OVERRIDE" ] && [ ! -L "$OVERRIDE" ]; then
+      rm -rf "$DISABLED"
+      mv "$OVERRIDE" "$DISABLED"
+      echo ":: moved Cumulus override -> $DISABLED (stock shell shows through)"
+    fi
+    # restore the pre-Cumulus scheme + wallpaper if we have a snapshot
+    if [ -f "$BACKUP/scheme.json" ]; then
+      mkdir -p "$STATE"
+      cp "$BACKUP/scheme.json" "$SCHEME_FILE"
+      echo ":: restored previous scheme"
+    fi
+    if [ -f "$BACKUP/wallpaper-path.txt" ] && command -v caelestia >/dev/null; then
+      caelestia wallpaper -f "$(cat "$BACKUP/wallpaper-path.txt")" -N >/dev/null 2>&1 || true
+      echo ":: restored previous wallpaper"
+    fi
+    reload
+    echo ":: Cumulus OFF (stock Caelestia)"
+    ;;
+  status)
+    if [ -d "$OVERRIDE" ]; then echo "Cumulus: ON  (override active at $OVERRIDE)"
+    else echo "Cumulus: OFF (no override; stock Caelestia)"; fi
+    [ -f "$SCHEME_FILE" ] && echo "current scheme: $(sed -n 's/.*"name": *"\([^"]*\)".*"flavour": *"\([^"]*\)".*/\1 \/ \2/p' "$SCHEME_FILE")"
+    [ -f "$BACKUP/scheme.json" ] && echo "backup exists: $BACKUP/scheme.json (restored on 'cumulus off')"
+    ;;
+  *)
+    echo "usage: cumulus {on [flavour] | off | status}" >&2; exit 2 ;;
+esac

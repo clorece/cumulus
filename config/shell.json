@@ -1,0 +1,27 @@
+{
+    "appearance": {
+        "deformScale": 0
+    },
+    "background": {
+        "wallpaperEnabled": true
+    },
+    "bar": {
+        "clock": {
+            "background": true
+        },
+        "tray": {
+            "background": true
+        }
+    },
+    "border": {
+        "rounding": 0,
+        "thickness": 0
+    },
+    "general": {
+        "idle": {
+            "lockBeforeSleep": false,
+            "timeouts": [
+            ]
+        }
+    }
+}
