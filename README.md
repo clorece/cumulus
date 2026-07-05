@@ -1,8 +1,8 @@
 # Cumulus
 
-A **matte-bubble** skin for the [Caelestia](https://github.com/caelestia-dots/caelestia)
+A **soft-bubble** skin for the [Caelestia](https://github.com/caelestia-dots/caelestia)
 Quickshell desktop shell (Hyprland). Cumulus reskins the entire shell into soft, rounded
-**matte bubbles lit from the top** — floating islands instead of a connected screen-edge
+**soft bubbles lit from the top** — floating islands instead of a connected screen-edge
 frame — and ships **24 wallpaper-paired colour schemes** you can cycle through with a keybind.
 
 > **Status:** draft / pre-release. Wallpaper licensing is unresolved (see
@@ -12,7 +12,7 @@ frame — and ships **24 wallpaper-paired colour schemes** you can cycle through
 
 ## What it looks like
 
-- **Matte bubbles** — every pill, card, button, slider and panel is a rounded surface with a
+- **Soft bubbles** — every pill, card, button, slider and panel is a rounded surface with a
   top→bottom gradient, inner top highlight, pooled bottom shadow and an outer drop shadow
   (ambient-occlusion pass). Container surfaces are flat; only *elements* are shaded, so the UI
   stays calm.

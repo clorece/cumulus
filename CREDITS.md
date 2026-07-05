@@ -19,5 +19,5 @@ license notices are preserved.
 
 ## Cumulus skin
 
-The matte-bubble redesign, colour schemes, and packaging are additions on top of Caelestia,
+The soft-bubble redesign, colour schemes, and packaging are additions on top of Caelestia,
 released under the same GPLv3 license.
