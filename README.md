@@ -66,7 +66,7 @@ Cumulus installs into Caelestia's **user override path**
 (`~/.config/quickshell/caelestia/`), which shadows the system copy. That makes it fully
 **reversible** — toggle it off (or remove the override) and you're back to stock Caelestia.
 
-### Quick start
+### 1. Install script (recommended)
 
 ```sh
 git lfs install                       # once per machine — so wallpapers clone as images, not pointers
@@ -99,10 +99,14 @@ Then toggle or check state anytime:
 > The script targets standard XDG paths; on an unusual setup, read it first or use the manual
 > path below.
 
-### Alternatives
+### 2. Let an AI agent do it
 
-<details>
-<summary><b>Manual install</b> (most transparent)</summary>
+Open an agent (Claude Code, Codex, Gemini CLI, etc.) **in the cloned repo** and paste the
+prompt in [`install/ai-install-prompt.md`](install/ai-install-prompt.md). It detects your
+Caelestia paths, backs up, installs, and reloads — adapting to your machine instead of
+assuming it.
+
+### 3. Manual (most transparent)
 
 ```sh
 git lfs install && git clone https://github.com/clorece/cumulus && cd cumulus
@@ -122,22 +126,13 @@ cp wallpapers/wallmap.json ~/.local/share/cumulus/wallmap.json
 #    border thickness/rounding:0, backgrounds on) — merge by hand, don't overwrite.
 $EDITOR config/shell.json   # then apply the keys to ~/.config/caelestia/shell.json
 
-# 4. (Optional) register schemes with the caelestia CLI for full app theming
-./schemes/install-schemes.sh          # needs sudo; rootless apply works without it
+# 4. Apply a preset — rootless (shell + wallpaper), or add install-schemes.sh for app theming
+./schemes/apply.sh sunset-pitstop
+#   full cross-app theming (sudo): ./schemes/install-schemes.sh && ./schemes/apply.sh sunset-pitstop
 
 # 5. Reload the shell
 qs -c caelestia kill; caelestia shell -d
 ```
-</details>
-
-<details>
-<summary><b>Let an AI agent do it</b></summary>
-
-Open an agent (Claude Code, Codex, Gemini CLI, etc.) **in the cloned repo** and paste the
-prompt in [`install/ai-install-prompt.md`](install/ai-install-prompt.md). It detects your
-Caelestia paths, backs up, installs, and reloads — adapting to your machine instead of
-assuming it.
-</details>
 
 ---
 
