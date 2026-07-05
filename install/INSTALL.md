@@ -12,32 +12,43 @@ Check compatibility first: [docs/COMPATIBILITY.md](../docs/COMPATIBILITY.md).
 
 - Caelestia (shell + `caelestia` CLI + Hypr config) installed and running
 - Quickshell, Hyprland
-- **Git LFS** (`git lfs install`) — required *before* cloning to get the wallpapers
-- `jq` (for the config merge; optional if you merge by hand)
-
-```sh
-git lfs install
-git clone <repo-url> cumulus && cd cumulus
-```
+- **git** + **Git LFS** — run `git lfs install` **before** cloning to get the wallpapers
+  (otherwise they arrive as LFS pointer files)
+- **jq** — for the `shell.json` merge (the script degrades gracefully without it and tells
+  you to merge by hand)
 
 ---
 
-## Fast path — script
+## Quick start (script)
 
 ```sh
-./install/install.sh            # rootless (shell + wallpapers + scheme state)
-./install/install.sh --system   # also register schemes with the caelestia CLI (sudo)
+git lfs install                       # once per machine
+git clone https://github.com/clorece/cumulus
+cd cumulus
+./install/install.sh                  # rootless: shell override + wallpapers + a default preset
+./install/install.sh --system         # optional: also register the 24 schemes with the CLI (sudo)
 ```
 
 It backs up any existing override, stages assets to `~/.local/share/cumulus`, **merges**
-(not overwrites) the skin keys into `~/.config/caelestia/shell.json`, applies a preset, and
-reloads. It's best-effort — read it first.
+(not overwrites) the skin keys into `~/.config/caelestia/shell.json`, applies the
+`sunset-pitstop` preset, and reloads the shell. It's a plain, reversible bash script — read
+it first if you like. Tested on Arch against the pinned Caelestia stack.
+
+Toggle or check state anytime:
+
+```sh
+./scripts/cumulus status              # ON/OFF vs stock Caelestia
+./scripts/cumulus off                 # revert to stock (restores your previous scheme/wallpaper)
+./scripts/cumulus on                  # re-enable Cumulus
+```
 
 ---
 
 ## Manual path
 
 ```sh
+git lfs install && git clone https://github.com/clorece/cumulus && cd cumulus
+
 # 1. Shell override (back up anything already there)
 mv ~/.config/quickshell/caelestia ~/.config/quickshell/caelestia.pre-cumulus 2>/dev/null || true
 mkdir -p ~/.config/quickshell

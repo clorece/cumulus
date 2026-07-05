@@ -39,6 +39,16 @@ if [ -d "$OVERRIDE" ]; then
 fi
 mkdir -p "$(dirname "$OVERRIDE")"
 cp -a "$REPO/shell" "$OVERRIDE"
+# Make the override a tiny git repo: `caelestia --version` runs
+# `git rev-list HEAD` on this dir *uncaught*, so a non-git copy makes that
+# command traceback. A single local commit keeps `--version` happy (harmless
+# to Quickshell, which ignores the .git dir). Best-effort.
+if command -v git >/dev/null; then
+  git -C "$OVERRIDE" init -q 2>/dev/null \
+    && git -C "$OVERRIDE" add -A 2>/dev/null \
+    && git -C "$OVERRIDE" -c user.name=Cumulus -c user.email=cumulus@localhost \
+         -c commit.gpgsign=false commit -qm "Cumulus skin override" 2>/dev/null || true
+fi
 say "installed shell override -> $OVERRIDE"
 
 # --- 2. stage wallpapers + scheme state ----------------------------------

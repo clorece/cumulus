@@ -46,7 +46,10 @@ setup first:
 - [Caelestia dots](https://github.com/caelestia-dots) installed and running — the shell,
   the `caelestia` CLI, and the Hyprland config.
 - **Quickshell** and **Hyprland** (installed by Caelestia).
-- **Git LFS** to clone the wallpapers (they're stored via LFS).
+- **git** + **Git LFS** — run `git lfs install` **before** cloning, or the wallpapers arrive
+  as LFS pointer files instead of images.
+- **jq** — for the `shell.json` merge (the installer degrades gracefully without it and tells
+  you to merge by hand).
 - Optional, for full cross-app theming on preset changes: the apps Caelestia already themes
   (fish/bash, fuzzel, btop, htop, nvtop, cava, GTK, Qt, Zed, spicetify, Discord clients).
 
@@ -61,54 +64,80 @@ setup first:
 
 Cumulus installs into Caelestia's **user override path**
 (`~/.config/quickshell/caelestia/`), which shadows the system copy. That makes it fully
-**reversible** — remove the override and you're back to stock Caelestia.
+**reversible** — toggle it off (or remove the override) and you're back to stock Caelestia.
 
-Pick whichever install path suits you:
-
-### Option A — Manual (most transparent)
+### Quick start
 
 ```sh
-# 1. Clone (Git LFS pulls the wallpapers)
-git clone <repo-url> cumulus && cd cumulus
+git lfs install                       # once per machine — so wallpapers clone as images, not pointers
+git clone https://github.com/clorece/cumulus
+cd cumulus
+./install/install.sh                  # rootless: shell override + wallpapers + a default preset
+```
 
-# 2. Back up any existing override, then drop in the cumulus shell
+Want full cross-app theming (GTK/Qt/terminals/etc. follow the preset)? Also register the
+schemes with the caelestia CLI:
+
+```sh
+./install/install.sh --system         # additionally installs the 24 schemes (uses sudo)
+```
+
+The installer backs up any existing override, stages wallpapers + scheme state to
+`~/.local/share/cumulus`, **merges** (never overwrites) the skin keys into your
+`~/.config/caelestia/shell.json`, applies the `sunset-pitstop` preset, and reloads the shell.
+It's a plain, reversible bash script — read it first if you like.
+
+Then toggle or check state anytime:
+
+```sh
+./scripts/cumulus status              # ON/OFF vs stock Caelestia
+./scripts/cumulus off                 # revert to stock (restores your previous scheme/wallpaper)
+./scripts/cumulus on                  # re-enable Cumulus
+```
+
+> Tested on Arch Linux against the pinned Caelestia stack (see [Requirements](#requirements)).
+> The script targets standard XDG paths; on an unusual setup, read it first or use the manual
+> path below.
+
+### Alternatives
+
+<details>
+<summary><b>Manual install</b> (most transparent)</summary>
+
+```sh
+git lfs install && git clone https://github.com/clorece/cumulus && cd cumulus
+
+# 1. Back up any existing override, then drop in the cumulus shell
 mv ~/.config/quickshell/caelestia ~/.config/quickshell/caelestia.bak 2>/dev/null || true
 mkdir -p ~/.config/quickshell
 cp -a shell ~/.config/quickshell/caelestia
 
-# 3. Stage wallpapers + scheme state
+# 2. Stage wallpapers + scheme state
 mkdir -p ~/.local/share/cumulus
 cp -a wallpapers ~/.local/share/cumulus/walls
 cp -a schemes/state ~/.local/share/cumulus/state
 cp wallpapers/wallmap.json ~/.local/share/cumulus/wallmap.json
 
-# 4. Merge the skin's shell.json settings into your Caelestia config
-#    (deformScale:0, border thickness/rounding:0, backgrounds on)
-#    -- merge by hand; do NOT blindly overwrite your own shell.json.
+# 3. Merge the skin's shell.json into your Caelestia config (deformScale:0,
+#    border thickness/rounding:0, backgrounds on) — merge by hand, don't overwrite.
 $EDITOR config/shell.json   # then apply the keys to ~/.config/caelestia/shell.json
 
-# 5. (Optional) install the schemes into the caelestia CLI for full app theming
-./schemes/install-schemes.sh    # needs sudo; rootless fallback works without it
+# 4. (Optional) register schemes with the caelestia CLI for full app theming
+./schemes/install-schemes.sh          # needs sudo; rootless apply works without it
 
-# 6. Reload the shell
+# 5. Reload the shell
 qs -c caelestia kill; caelestia shell -d
 ```
+</details>
 
-### Option B — Let an AI agent do it
+<details>
+<summary><b>Let an AI agent do it</b></summary>
 
 Open an agent (Claude Code, Codex, Gemini CLI, etc.) **in the cloned repo** and paste the
-prompt in [`install/ai-install-prompt.md`](install/ai-install-prompt.md). It walks the agent
-through detecting your Caelestia paths, backing up, installing, and reloading — adapting to
-your machine instead of assuming it.
-
-### Option C — Install script (experimental)
-
-```sh
-./install/install.sh
-```
-
-Best-effort and **not guaranteed stable across distros** — it makes assumptions about paths
-and Python locations. Read it before running. Option A or B is safer.
+prompt in [`install/ai-install-prompt.md`](install/ai-install-prompt.md). It detects your
+Caelestia paths, backs up, installs, and reloads — adapting to your machine instead of
+assuming it.
+</details>
 
 ---
 
@@ -133,19 +162,24 @@ btop/GTK/Qt/Zed/etc.).
 
 ## Switching back to stock Caelestia
 
-Because Cumulus lives in the override path, reverting is just:
+Use the toggle — it snapshots your pre-Cumulus scheme + wallpaper on first enable, so `off`
+restores *exactly* what you had:
 
 ```sh
-rm -rf ~/.config/quickshell/caelestia
-mv ~/.config/quickshell/caelestia.bak ~/.config/quickshell/caelestia 2>/dev/null || true
-# restore your previous scheme:
-caelestia scheme set ...    # or delete ~/.local/state/caelestia/scheme.json
-qs -c caelestia kill; caelestia shell -d
+./scripts/cumulus off      # move the override aside → stock Caelestia shows through
+./scripts/cumulus on       # bring Cumulus back
+./scripts/cumulus status   # what's active right now
 ```
 
-> **Recommended:** treat this as a **toggle**. A `cumulus off` / `cumulus on` helper that
-> snapshots your prior scheme + wallpaper on first enable (so "off" restores *exactly* what
-> you had) is on the roadmap — see [PLAN.md](PLAN.md).
+Nothing is destroyed — `off` moves the override to `~/.config/quickshell/caelestia.cumulus-disabled`
+and restores your saved scheme/wallpaper. See [docs/SWITCHING.md](docs/SWITCHING.md) for details.
+
+Prefer to do it by hand? The override is just a directory:
+
+```sh
+mv ~/.config/quickshell/caelestia ~/.config/quickshell/caelestia.off
+qs -c caelestia kill; caelestia shell -d
+```
 
 ---
 
