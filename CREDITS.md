@@ -17,6 +17,16 @@ by the Caelestia authors, licensed **GPLv3**. The `shell/` tree is derived from 
 and remains under GPLv3 (see [`LICENSE`](LICENSE)). All original Caelestia copyright and
 license notices are preserved.
 
+## Sounds
+
+The mechanical key-click samples used by the wake greeter and the UI sound service
+(`shell/assets/sounds/keyboard/<switch>/`) are from **[tplai/kbsim](https://github.com/tplai/kbsim)**
+(**MIT**). Switches included: holypanda, cream, blackink, topre, mxblack, plus pitched-down
+`cream-deep` / `blackink-deep` variants. The shipped UI pack (`shell/assets/sounds/ui/keys/`) is
+**built from those samples** via `shell/assets/sounds/ui/build_keys_pack.sh` (deep thocks for
+hover / tick / panels; a pitched-up, low-passed variant for `click`), so it inherits the same MIT
+attribution.
+
 ## Cumulus skin
 
 The soft-bubble redesign, colour schemes, and packaging are additions on top of Caelestia,

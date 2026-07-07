@@ -29,6 +29,10 @@ Item {
     property alias hasCurrent: popoutState.hasCurrent
     property real currentCenter
 
+    // hover cue as the cursor moves between bar items (status icons, tray, etc.)
+    onCurrentNameChanged: if (currentName)
+        Sounds.play("hover")
+
     property string detachedMode
     property string queuedMode
 

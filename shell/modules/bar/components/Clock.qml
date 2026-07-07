@@ -17,8 +17,8 @@ Bubble {
     readonly property int padding: Config.bar.clock.background ? Tokens.padding.medium : Tokens.padding.extraSmall
     readonly property var font: Tokens.font.body.builders.small.scale(1.1)
 
-    implicitWidth: Tokens.sizes.bar.innerWidth
-    implicitHeight: layout.implicitHeight + root.padding * 2
+    implicitHeight: Tokens.sizes.bar.innerWidth
+    implicitWidth: layout.implicitWidth + root.padding * 2
 
     // gated on the existing config toggle so behaviour is unchanged when off
     topColor: Config.bar.clock.background ? Colours.bubbleTop : "transparent"
@@ -27,14 +27,14 @@ Bubble {
     matte: Config.bar.clock.background ? 1 : 0
     radius: Tokens.rounding.full
 
-    ColumnLayout {
+    RowLayout {
         id: layout
 
         anchors.centerIn: parent
-        spacing: Tokens.spacing.extraSmall
+        spacing: Tokens.spacing.small
 
         Loader {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             asynchronous: true
             active: Config.bar.clock.showIcon
             visible: active
@@ -46,69 +46,37 @@ Bubble {
         }
 
         StyledText {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             visible: Config.bar.clock.showDate
 
-            horizontalAlignment: StyledText.AlignHCenter
-            text: Time.format("ddd\nd")
+            text: Time.format("ddd d")
             font: Tokens.font.body.small
             color: root.colour
         }
 
         Rectangle {
-            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter
             visible: Config.bar.clock.showDate
-            implicitHeight: 1
+            implicitWidth: 1
+            implicitHeight: time.implicitHeight
             color: Colours.palette.m3outlineVariant
         }
 
         StyledText {
-            Layout.alignment: Qt.AlignHCenter
-            text: Time.hourStr
-            font: {
-                const scale = text === "11" ? 1.15 : Math.min(1.05, Math.max(hourMetrics.width, minMetrics.width) / hourMetrics.width);
-                return root.font.width(scale * 100).letterSpacing(scale).build();
-            }
+            id: time
+
+            Layout.alignment: Qt.AlignVCenter
+            text: `${Time.hourStr}:${Time.minuteStr}`
+            font: root.font.build()
             color: root.colour
-
-            TextMetrics {
-                id: hourMetrics
-
-                font: root.font.build()
-                text: Time.hourStr
-            }
         }
 
         StyledText {
-            Layout.topMargin: -parent.spacing - 4
-            Layout.alignment: Qt.AlignHCenter
-            text: Time.minuteStr
-            font: {
-                const scale = text === "11" ? 1.15 : Math.min(1.05, Math.max(hourMetrics.width, minMetrics.width) / minMetrics.width);
-                return root.font.width(scale * 100).letterSpacing(scale).build();
-            }
+            Layout.alignment: Qt.AlignVCenter
+            visible: GlobalConfig.services.useTwelveHourClock
+            text: Time.amPmStr.toLowerCase()
+            font: Tokens.font.body.builders.small.scale(0.9).build()
             color: root.colour
-
-            TextMetrics {
-                id: minMetrics
-
-                font: root.font.build()
-                text: Time.minuteStr
-            }
-        }
-
-        Loader {
-            Layout.topMargin: -parent.spacing - 4
-            Layout.alignment: Qt.AlignHCenter
-            asynchronous: true
-            active: GlobalConfig.services.useTwelveHourClock
-            visible: active
-
-            sourceComponent: StyledText {
-                text: Time.amPmStr.toLowerCase()
-                font: Tokens.font.body.builders.small.scale(0.9).build()
-                color: root.colour
-            }
         }
     }
 }

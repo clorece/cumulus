@@ -13,12 +13,12 @@ Scope {
     required property Bar.BarWrapper bar
 
     ExclusionZone {
-        anchors.left: true
+        anchors.top: true
         exclusiveZone: root.bar.exclusiveZone
     }
 
     ExclusionZone {
-        anchors.top: true
+        anchors.left: true
     }
 
     ExclusionZone {

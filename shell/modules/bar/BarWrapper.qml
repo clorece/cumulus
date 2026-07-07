@@ -14,16 +14,17 @@ Item {
     required property ShellScreen screen
     required property DrawerVisibilities visibilities
     required property BarPopouts.Wrapper popouts
+    required property Item dashboard
     required property bool fullscreen
 
     readonly property bool disabled: Strings.testRegexList(Config.bar.excludedScreens, screen.name)
 
-    readonly property int clampedWidth: Math.max(Config.border.minThickness, implicitWidth)
+    readonly property int clampedHeight: Math.max(Config.border.minThickness, implicitHeight)
     readonly property int padding: Math.max(Tokens.padding.small, Config.border.thickness)
-    // matte skin: wider reserved zone = slightly wider island + room for the
-    // 8px left / 6px right wallpaper gaps of the floating island
-    readonly property int contentWidth: Tokens.sizes.bar.innerWidth + padding * 2 + 18
-    readonly property int exclusiveZone: !disabled && (Config.bar.persistent || visibilities.bar) ? contentWidth : Config.border.thickness
+    // matte skin: taller reserved zone = slightly taller island + room for the
+    // top / bottom wallpaper gaps of the floating island
+    readonly property int contentHeight: Tokens.sizes.bar.innerWidth + padding * 2 + 18
+    readonly property int exclusiveZone: !disabled && (Config.bar.persistent || visibilities.bar) ? contentHeight : Config.border.thickness
     readonly property bool shouldBeVisible: !fullscreen && !disabled && (Config.bar.persistent || visibilities.bar || isHovered)
     property bool isHovered
 
@@ -31,24 +32,24 @@ Item {
         (content.item as Bar)?.closeTray();
     }
 
-    function checkPopout(y: real): void {
-        (content.item as Bar)?.checkPopout(y);
+    function checkPopout(x: real): void {
+        (content.item as Bar)?.checkPopout(x);
     }
 
-    function handleWheel(y: real, angleDelta: point): void {
-        (content.item as Bar)?.handleWheel(y, angleDelta);
+    function handleWheel(x: real, angleDelta: point): void {
+        (content.item as Bar)?.handleWheel(x, angleDelta);
     }
 
     clip: true
-    visible: width > Config.border.thickness
-    implicitWidth: fullscreen ? 0 : Config.border.thickness
+    visible: height > Config.border.thickness
+    implicitHeight: fullscreen ? 0 : Config.border.thickness
 
     states: State {
         name: "visible"
         when: root.shouldBeVisible
 
         PropertyChanges {
-            root.implicitWidth: root.contentWidth
+            root.implicitHeight: root.contentHeight
         }
     }
 
@@ -59,7 +60,7 @@ Item {
 
             Anim {
                 target: root
-                property: "implicitWidth"
+                property: "implicitHeight"
             }
         },
         Transition {
@@ -68,7 +69,7 @@ Item {
 
             Anim {
                 target: root
-                property: "implicitWidth"
+                property: "implicitHeight"
                 type: Anim.Emphasized
             }
         }
@@ -79,13 +80,13 @@ Item {
     Bubble {
         id: island
 
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        anchors.left: parent.left
         anchors.right: parent.right
-        anchors.topMargin: 10
-        anchors.bottomMargin: 10
-        anchors.rightMargin: 6
-        width: root.contentWidth - 14 // 8px wallpaper gap on the left, 6px on the right
+        anchors.top: parent.top
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        anchors.topMargin: 6
+        height: root.contentHeight - 14 // 8px wallpaper gap on top, 6px on bottom
 
         // one step darker than the pills (Colours.bubble*) so they read raised
         color: Colours.barIsland
@@ -98,17 +99,18 @@ Item {
     Loader {
         id: content
 
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        anchors.left: parent.left
         anchors.right: parent.right
+        anchors.top: parent.top
 
         active: root.shouldBeVisible
 
         sourceComponent: Bar {
-            width: root.contentWidth
+            height: root.contentHeight
             screen: root.screen
             visibilities: root.visibilities
             popouts: root.popouts // qmllint disable incompatible-type
+            dashboard: root.dashboard
             fullscreen: root.fullscreen
         }
     }

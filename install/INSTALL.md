@@ -13,7 +13,8 @@ Check compatibility first: [docs/COMPATIBILITY.md](../docs/COMPATIBILITY.md).
 - Caelestia (shell + `caelestia` CLI + Hypr config) installed and running
 - Quickshell, Hyprland
 - **git** + **Git LFS** — run `git lfs install` **before** cloning to get the wallpapers
-  (otherwise they arrive as LFS pointer files)
+  **and the greeter/UI sound samples** (`shell/assets/sounds/**/*.wav`); otherwise they arrive
+  as LFS pointer files and the greeter/sounds are silent
 - **jq** — for the `shell.json` merge (the script degrades gracefully without it and tells
   you to merge by hand)
 
@@ -83,6 +84,25 @@ qs -c caelestia kill; caelestia shell -d
   Hypr keybinds (example in the main [README](../README.md)).
 - **Toggle on/off vs stock Caelestia:** `scripts/cumulus on|off|status`
   (see [docs/SWITCHING.md](../docs/SWITCHING.md)).
+
+## Wake greeter + UI sounds
+
+This build ships two extras that install automatically with `shell/` — nothing separate to run:
+
+- **Wake greeter** — a typewriter "Welcome, \<user\>" with mechanical key-click SFX on the lock
+  screen. It plays on the **boot lock** and on **wake** (screen-on after dpms, or resume from
+  suspend), *not* on plain idle-locks. Tunables (sound pack, speed, blur, etc.) live at the top
+  of `~/.config/quickshell/caelestia/modules/lock/Greeter.qml`.
+- **Shell-wide UI sounds** — a `Sounds` service that auto-creates
+  `~/.config/caelestia/sounds.json` on first run (enable / master volume / per-category levels).
+  Toggle live via the `sounds` IPC (`qs -c caelestia ipc call sounds toggle`) or the
+  `toggleSounds` shortcut. Silent during game mode.
+
+Both need Git LFS to have pulled the `.wav` samples (see prerequisites).
+
+**Want the greeter to be your login screen?** You can bypass your display manager so the Cumulus
+lock — and its greeter — is the first thing you see at boot. See
+[docs/LOGIN-SCREEN.md](../docs/LOGIN-SCREEN.md). (Optional, needs sudo, fully reversible.)
 
 ## Optional extras
 

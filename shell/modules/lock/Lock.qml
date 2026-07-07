@@ -7,12 +7,32 @@ import Quickshell.Wayland
 import qs.components.misc
 
 Scope {
+    id: root
+
     property alias lock: lock
+
+    // Shell-start timestamp: a lock engaged within `bootWindow` ms of startup is
+    // treated as the boot lock (and greets); later locks (idle/manual) don't.
+    readonly property double startTime: Date.now()
+    readonly property int bootWindow: 25000
+
+    // Latched per-lock: should the surface greet the moment it appears? Only the
+    // boot lock does. Recomputed on each fresh lock so it stays stable for the
+    // surface's lifetime (a mid-session flip would spuriously re-run initAnim).
+    property bool greetOnShow: false
 
     WlSessionLock {
         id: lock
 
         signal unlock
+        // Emitted when the screen powers back on (dpms) or the system resumes
+        // from sleep while locked — the LockSurface replays the greeter.
+        signal wake
+
+        property bool greetOnShow: root.greetOnShow
+
+        onLockedChanged: if (locked)
+            root.greetOnShow = (Date.now() - root.startTime) < root.bootWindow
 
         LockSurface {
             lock: lock

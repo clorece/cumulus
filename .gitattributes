@@ -14,3 +14,6 @@ wallpapers/*.png   filter=lfs diff=lfs merge=lfs -text
 
 # Gallery screenshots (large) via LFS
 docs/gallery/*.png  filter=lfs diff=lfs merge=lfs -text
+
+# UI + keyboard sound samples (many small binaries) via LFS
+shell/assets/sounds/**/*.wav  filter=lfs diff=lfs merge=lfs -text

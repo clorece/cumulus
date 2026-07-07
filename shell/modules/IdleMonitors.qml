@@ -22,9 +22,12 @@ Scope {
             lock.lock.locked = true;
         else if (action === "unlock")
             lock.lock.locked = false;
-        else if (typeof action === "string")
+        else if (typeof action === "string") {
             Hypr.dispatch(Hypr.usingLua && ["dpms off", "dpms on"].includes(action) ? `hl.dsp.dpms({ action = "${action === "dpms off" ? "disable" : "enable"}" })` : action);
-        else if (!SessionManager.exec(action))
+            // Screen powered back on while locked (screensaver wake) → greet.
+            if (action === "dpms on" && lock.lock.locked)
+                lock.lock.wake();
+        } else if (!SessionManager.exec(action))
             Quickshell.execDetached(action);
     }
 
@@ -32,6 +35,12 @@ Scope {
         function onAboutToSleep(): void {
             if (GlobalConfig.general.idle.lockBeforeSleep)
                 root.lock.lock.locked = true;
+        }
+
+        // System resumed from suspend/hibernate → greet if still locked.
+        function onResumed(): void {
+            if (root.lock.lock.locked)
+                root.lock.lock.wake();
         }
 
         function onLockRequested(): void {

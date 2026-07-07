@@ -11,6 +11,7 @@ MouseArea {
     property bool showHoverBackground: true
     property bool manualPressOverride
     property bool manualHoverOverride
+    property bool silent // opt out of hover/press UI sounds
     readonly property alias rect: base
 
     property bool shapeMorph
@@ -59,7 +60,16 @@ MouseArea {
     cursorShape: disabled ? undefined : Qt.PointingHandCursor
     hoverEnabled: true
 
-    onPressed: e => press(e.x, e.y)
+    onPressed: e => {
+        press(e.x, e.y);
+        if (!disabled && !silent)
+            Sounds.play("click");
+    }
+
+    onContainsMouseChanged: {
+        if (containsMouse && !disabled && !silent && showHoverBackground)
+            Sounds.play("hover");
+    }
 
     onPressedChanged: {
         if (!(pressed || manualPressOverride) && !rippleAnim.running && circle.opacity > 0)

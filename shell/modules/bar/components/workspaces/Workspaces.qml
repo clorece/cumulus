@@ -30,8 +30,8 @@ Bubble {
 
     property real blur: onSpecial ? 1 : 0
 
-    implicitWidth: Tokens.sizes.bar.innerWidth
-    implicitHeight: layout.implicitHeight + Tokens.padding.small
+    implicitHeight: Tokens.sizes.bar.innerWidth
+    implicitWidth: layout.implicitWidth + Tokens.padding.small
 
     topColor: Colours.bubbleTop
     bottomColor: Colours.bubbleBottom
@@ -65,7 +65,7 @@ Bubble {
             }
         }
 
-        ColumnLayout {
+        RowLayout {
             id: layout
 
             anchors.centerIn: parent
@@ -86,7 +86,7 @@ Bubble {
 
         Loader {
             asynchronous: true
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
             active: Config.bar.workspaces.activeIndicator
 
             sourceComponent: ActiveIndicator {
@@ -98,11 +98,31 @@ Bubble {
         }
 
         MouseArea {
+            id: wsMouse
+
+            property int hoveredWs: -1
+
             anchors.fill: layout
+            hoverEnabled: true
+
+            function wsAt(x: real, y: real): int {
+                return (layout.childAt(x, y) as Workspace)?.ws ?? -1;
+            }
+
+            onPositionChanged: event => {
+                const ws = wsAt(event.x, event.y);
+                if (ws !== hoveredWs) {
+                    hoveredWs = ws;
+                    if (ws > 0)
+                        Sounds.play("hover");
+                }
+            }
+            onExited: hoveredWs = -1
             onClicked: event => {
                 const ws = (layout.childAt(event.x, event.y) as Workspace)?.ws;
                 if (!ws)
                     return;
+                Sounds.play("click");
                 if (Hypr.activeWsId !== ws)
                     Hypr.dispatch(Hypr.usingLua ? `hl.dsp.focus({ workspace = "${ws}" })` : `workspace ${ws}`);
                 else

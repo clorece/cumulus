@@ -50,6 +50,13 @@ if command -v git >/dev/null; then
          -c commit.gpgsign=false commit -qm "Cumulus skin override" 2>/dev/null || true
 fi
 say "installed shell override -> $OVERRIDE"
+# Greeter + UI sounds ride inside shell/assets/sounds. If Git LFS wasn't pulled
+# they land as tiny text pointer files and everything is silent — flag it.
+probe="$OVERRIDE/assets/sounds/ui/keys/click_0.wav"
+if [ -f "$probe" ] && [ "$(wc -c <"$probe")" -lt 1024 ] && head -c 64 "$probe" | grep -q "git-lfs"; then
+  warn "sound samples look like Git LFS pointers — run: git lfs install && git lfs pull"
+  warn "(the wake greeter and UI sounds will be silent until you do)"
+fi
 
 # --- 2. stage wallpapers + scheme state ----------------------------------
 mkdir -p "$STAGE/walls" "$STAGE/state"
@@ -89,3 +96,5 @@ fi
 qs -c caelestia kill >/dev/null 2>&1; ( caelestia shell -d >/dev/null 2>&1 & )
 say "done. Toggle with:  $REPO/scripts/cumulus {on|off|status}"
 say "cycle presets by binding cumulus-scheme-cycle.sh next/prev to keys (see README)."
+say "new: a wake greeter + UI sounds ship with the shell (sounds.json auto-creates on first run)."
+say "make the greeter your login screen (optional, sudo): see docs/LOGIN-SCREEN.md."

@@ -37,7 +37,7 @@ Item {
     anchors.fill: parent
     // matte skin: float all panels off the screen edges (like the taskbar island)
     anchors.margins: borderThickness + 10
-    anchors.leftMargin: bar.implicitWidth
+    anchors.topMargin: bar.implicitHeight
 
     Item {
         id: osdWrapper

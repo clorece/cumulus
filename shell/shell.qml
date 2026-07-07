@@ -9,10 +9,16 @@ import "modules/drawers"
 import "modules/background"
 import "modules/areapicker"
 import "modules/lock"
+import QtQuick
 import Quickshell
+import qs.services
 
 ShellRoot {
     settings.watchFiles: false
+
+    // Eagerly instantiate the (lazy) Sounds singleton so it preloads the pack,
+    // creates its config, and exposes its IPC handler at shell start.
+    Component.onCompleted: Sounds.enabled
 
     GSFLoader {}
 

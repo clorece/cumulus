@@ -15,10 +15,17 @@ WlSessionLockSurface {
 
     readonly property alias unlocking: unlockAnim.running
 
+    // Play the wake greeter (typewriter "Welcome") before revealing the login
+    // UI at surface creation. Only the boot lock greets on show; idle/manual
+    // locks don't. Wakes (dpms/resume) replay it via the `onWake` handler below.
+    property bool greet: lock.greetOnShow
+
     contentItem.Config.screen: screen.name
     contentItem.Tokens.screen: screen.name
 
     color: "transparent"
+
+    Component.onCompleted: if (greet) greeter.active = true
 
     Connections {
         function onUnlock(): void {
@@ -87,7 +94,9 @@ WlSessionLockSurface {
     ParallelAnimation {
         id: initAnim
 
-        running: true
+        // When greeting, the greeter's `finished` signal kicks this off; when
+        // not greeting, run immediately (original behaviour).
+        running: !root.greet
 
         Anim {
             target: background
@@ -220,5 +229,53 @@ WlSessionLockSurface {
             opacity: 0
             scale: 0
         }
+    }
+
+    // Wake greeter overlay — sits above everything, plays on lock, then hands
+    // off to the login entrance (initAnim) via its `finished` signal.
+    Greeter {
+        id: greeter
+
+        anchors.fill: parent
+        z: 100
+        active: false
+        onFinished: initAnim.start()
+    }
+
+    // Replay the greeter when the screen wakes (dpms on) or the system resumes
+    // from sleep while this surface is already up. Deduped so the two wake
+    // sources (resume + dpms-return) don't restart it mid-play.
+    Connections {
+        target: root.lock
+        function onWake(): void {
+            if (greeter.visible || wakeGuard.running)
+                return;
+            wakeGuard.restart();
+            greeter.active = false;
+            greeter.active = true;
+        }
+    }
+
+    Timer {
+        id: wakeGuard
+        interval: 2500
+    }
+
+    // Start typing your password to skip straight to the login UI (the
+    // greeter never holds keyboard focus, so keys reach PAM regardless).
+    Connections {
+        target: root.pam
+        function onBufferChanged(): void {
+            if (greeter.active && root.pam.buffer.length > 0)
+                greeter.skip();
+        }
+    }
+
+    // Safety net: if the greeter never signals (e.g. asset error), reveal the
+    // login UI anyway so the session can't get visually stuck.
+    Timer {
+        running: root.greet
+        interval: 5000
+        onTriggered: if (!initAnim.running) initAnim.start()
     }
 }

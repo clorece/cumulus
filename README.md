@@ -20,6 +20,11 @@ frame — and ships **24 wallpaper-paired colour schemes** you can cycle through
   discrete offset cards.
 - **24 presets** — each pairs a wallpaper with a hand-tuned palette. 16 are dark, 8 are true
   light schemes (the mode flows through to GTK/Qt/terminals automatically).
+- **Wake greeter** — a typewriter "Welcome, \<user\>" with mechanical key-click SFX on the lock
+  screen, played at boot and on wake (dpms-on / resume). You can make it your actual
+  [login screen](docs/LOGIN-SCREEN.md).
+- **Shell-wide UI sounds** — an optional, non-invasive sound layer (hover/click/toggle/panel/
+  system cues) with per-category levels; auto-configured via `~/.config/caelestia/sounds.json`.
 
 ![Sunset Pitstop — dashboard & notifications](docs/gallery/01-sunset-pitstop-dashboard.png)
 
@@ -46,8 +51,8 @@ setup first:
 - [Caelestia dots](https://github.com/caelestia-dots) installed and running — the shell,
   the `caelestia` CLI, and the Hyprland config.
 - **Quickshell** and **Hyprland** (installed by Caelestia).
-- **git** + **Git LFS** — run `git lfs install` **before** cloning, or the wallpapers arrive
-  as LFS pointer files instead of images.
+- **git** + **Git LFS** — run `git lfs install` **before** cloning, or the wallpapers **and the
+  greeter/UI sound samples** arrive as LFS pointer files (images blank, sounds silent).
 - **jq** — for the `shell.json` merge (the installer degrades gracefully without it and tells
   you to merge by hand).
 - Optional, for full cross-app theming on preset changes: the apps Caelestia already themes

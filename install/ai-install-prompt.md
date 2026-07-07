@@ -26,8 +26,10 @@ in the cloned repo. Do this carefully and reversibly:
 
 4. STAGE ASSETS. Copy `wallpapers/*.jpg` -> ~/.local/share/cumulus/walls/,
    `schemes/state/*` -> ~/.local/share/cumulus/state/, and `wallpapers/wallmap.json` ->
-   ~/.local/share/cumulus/wallmap.json. If the wallpapers are tiny text pointer files,
-   Git LFS wasn't pulled — tell me to run `git lfs install && git lfs pull`.
+   ~/.local/share/cumulus/wallmap.json. If the wallpapers OR the sound samples under
+   `shell/assets/sounds/**/*.wav` are tiny text pointer files, Git LFS wasn't pulled — tell me
+   to run `git lfs install && git lfs pull`. (The sounds ride along inside `shell/` from step 3;
+   the wake greeter and UI sound service are dead-silent without those .wav files.)
 
 5. MERGE CONFIG (do NOT overwrite). Merge the keys from this repo's `config/shell.json` into
    my existing ~/.config/caelestia/shell.json using `jq -s '.[0] * .[1]'`. Preserve all my
@@ -45,6 +47,39 @@ in the cloned repo. Do this carefully and reversibly:
 
 9. TELL ME how to toggle back to stock Caelestia: `scripts/cumulus off` (and `on`), and that
    my previous scheme/wallpaper is snapshotted on first `on`.
+
+10. WAKE GREETER + SOUNDS (new). Point out that this build adds a wake greeter (typewriter
+    "Welcome, <user>" with mechanical key-click SFX) on the lock screen, and a shell-wide UI
+    sound service. The greeter plays on boot-lock and on wake (dpms-on / resume-from-suspend),
+    not on plain idle-locks. The UI sound service auto-creates ~/.config/caelestia/sounds.json
+    on first run (enable / master volume / per-category levels; toggle live with the `sounds`
+    IPC or the `toggleSounds` shortcut). Greeter look/feel is tunable at the top of
+    modules/lock/Greeter.qml (see docs/LOGIN-SCREEN.md). Nothing extra to install — it's all
+    in the shell/ copy from step 3.
+
+11. OPTIONAL — LOGIN-SCREEN BYPASS (only if I ask for it). Offer to make the Cumulus lock my
+    actual login screen so I experience the greeter at boot. This is the "display-manager
+    bypass": autologin the DM straight into Hyprland, then boot-lock Hyprland so the Cumulus
+    lock (and greeter) is the first thing shown. It still requires my password to unlock — it
+    just moves the prompt from the DM into the Cumulus lock. This needs sudo and edits system
+    files, so DO NOT do it unless I explicitly ask, and confirm each change first. Follow
+    docs/LOGIN-SCREEN.md exactly:
+      a. Detect my display manager (`systemctl status display-manager`, readlink the unit) and
+         list my sessions (`ls /usr/share/wayland-sessions/`). Pick a real Hyprland session
+         name — do NOT guess a session that doesn't exist there.
+      b. Write the DM autologin config for MY dm (SDDM -> /etc/sddm.conf.d/autologin.conf with
+         [Autologin] User/Session; GDM/LightDM/greetd variants are in docs/LOGIN-SCREEN.md).
+         Show me the exact file before writing it.
+      c. Add a boot-lock hook to MY Hyprland config (Lua execs.lua, or an exec-once script for
+         plain hyprland.conf) that polls `qs -c caelestia ipc call lock lock` until it succeeds,
+         so the lock engages inside the ~25s boot-greet window. Confirm the shell is already
+         started at boot (`caelestia shell -d`); add it if not.
+      d. The keyring pass-through (`auth optional pam_gnome_keyring.so`) already ships in
+         shell/assets/pam.d/passwd, so unlocking the lock also unlocks my keyring — just tell me
+         it's handled.
+      e. TELL ME how to revert (remove the autologin file + the boot-lock hook + reboot) and
+         warn me to keep a TTY / live USB handy the first reboot in case the session name is
+         wrong.
 
 Stop and ask me before anything destructive or anything needing sudo. Report each step's
 result.
